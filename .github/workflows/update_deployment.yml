@@ -10,7 +10,7 @@ jobs:
       - name: Update deployment status
         run: |
           curl -X POST \
-            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Authorization: token ${{ secrets.ACTIONS_TOKEN }}" \
             -H "Content-Type: text/json; charset=utf-8" \
             -H "Accept: application/vnd.github.flash-preview+json" \
             -d "{\"state\":\"success\", \"target_url\":\"https://github.com/${{ github.event.repository.full_name }}/actions\", \"description\":\"update for four keys\"}" \
