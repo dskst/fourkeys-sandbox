@@ -1,0 +1,17 @@
+name: update-deployment
+
+on: deployment
+
+jobs:
+  update_deployment:
+    name: update_deployment
+    runs-on: ubuntu-latest
+    steps:
+      - name: Update deployment status
+        run: |
+          curl -X POST \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Content-Type: text/json; charset=utf-8" \
+            -H "Accept: application/vnd.github.flash-preview+json" \
+            -d "{\"state\":\"success\", \"target_url\":\"https://github.com/${{ github.event.repository.full_name }}/actions\", \"description\":\"update for four keys\"}" \
+            https://api.github.com/repos/${{ github.event.repository.full_name }}/deployments/${{ github.event.deployment.id }}/statuses
